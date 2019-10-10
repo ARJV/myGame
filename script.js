@@ -18,7 +18,6 @@ var box = new Box();;
 $("body").keydown(function (event) {
     direction = directions[event.keyCode];
     player.move();
-    console.log(direction);
 });
 
 function Block(row, col) {
@@ -49,24 +48,24 @@ Block.prototype.equal = function (otherBlock) {
 function Level() {
     this.levelMap = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 3, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+    [1, 1, 0, 3, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 1, 1, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]; // 1 - стена, 2 - игрок, 3 - ящик
     this.segments = [];
@@ -93,36 +92,60 @@ Level.prototype.draw = function () {
 }
 
 function Player(row, col) {
-    this.position = new Block(col, row);
+    this.position = new Block(row, col);
 }
 Player.prototype.draw = function () {
     this.position.drawCircle("red");
 }
 Player.prototype.move = function () {
-    if (direction === "right" && !this.checkCollision(this.position.col + 1, this.position.row, level)) {
-        this.position.col += 1;
-    } else if (direction === "down" && !this.checkCollision(this.position.col, this.position.row + 1, level)) {
-        this.position.row += 1;
-        console.log(this.position.equal(box.segments[2]));
-    } else if (direction === "left" && !this.checkCollision(this.position.col - 1, this.position.row, level)) {
-        this.position.col -= 1;
-    } else if (direction === "up" && !this.checkCollision(this.position.col, this.position.row - 1, level)) {
-        this.position.row -= 1;
+    var newPosition = this.calcNewPosition();
+    var collWall = this.checkCollision(newPosition, level);
+    var collBox = this.checkCollision(newPosition, box);
+    if (collBox || collWall) {
+        if (collBox && box.move(collBox)) {
+            this.position.row = newPosition.row;
+            this.position.col = newPosition.col;
+        }
+    } else {
+        this.position.row = newPosition.row;
+        this.position.col = newPosition.col;
     }
 
-    
     ctx.clearRect(this.position.col, this.position.row, width, height);
     level.draw()
     player.draw();
     box.draw();
 }
-Player.prototype.checkCollision = function (nextCol, nextRow, collObj) {
+Player.prototype.checkCollision = function (newPos, collObj) {
     for (var i = 0; i < collObj.segments.length; i++) {
-        if (nextCol === collObj.segments[i].col && nextRow === collObj.segments[i].row) {
-            return i;
+        if (newPos.col === collObj.segments[i].col && newPos.row === collObj.segments[i].row) {
+            return collObj.segments[i];
         }
     }
     return false;
+}
+Player.prototype.calcNewPosition = function () {
+    if (direction === "right") {
+        return {
+            row: this.position.row,
+            col: this.position.col + 1
+        };
+    } else if (direction === "down") {
+        return {
+            row: this.position.row + 1,
+            col: this.position.col
+        };
+    } else if (direction === "left") {
+        return {
+            row: this.position.row,
+            col: this.position.col - 1
+        };
+    } else if (direction === "up") {
+        return {
+            row: this.position.row - 1,
+            col: this.position.col
+        };
+    }
 }
 
 function Box() {
@@ -132,6 +155,54 @@ Box.prototype.draw = function () {
     for (var i = 0; i < this.segments.length; i++) {
         this.segments[i].drawSquare("yellow");
     }
+}
+Box.prototype.move = function (collBox, newPosition) {
+    var newPosBox = this.calcNewPosition(collBox);
+    if (!this.checkCollisionWall(newPosBox) && !this.checkCollisionBox(newPosBox)) {
+        collBox.row = newPosBox.row;
+        collBox.col = newPosBox.col;
+        return true;
+    }
+    return false;
+}
+Box.prototype.calcNewPosition = function (collBox) {
+    if (direction === "right") {
+        return {
+            row: collBox.row,
+            col: collBox.col + 1
+        };
+    } else if (direction === "down") {
+        return {
+            row: collBox.row + 1,
+            col: collBox.col
+        };
+    } else if (direction === "left") {
+        return {
+            row: collBox.row,
+            col: collBox.col - 1
+        };
+    } else if (direction === "up") {
+        return {
+            row: collBox.row - 1,
+            col: collBox.col
+        };
+    }
+}
+Box.prototype.checkCollisionWall = function (newPos) {
+    for (var i = 0; i < level.segments.length; i++) {
+        if (newPos.col === level.segments[i].col && newPos.row === level.segments[i].row) {
+            return true;
+        }
+    }
+    return false;
+}
+Box.prototype.checkCollisionBox = function (newPos) {
+    for (var i = 0; i < box.segments.length; i++) {
+        if (newPos.col === box.segments[i].col && newPos.row === box.segments[i].row) {
+            return true;
+        }
+    }
+    return false;
 }
 
 var level = new Level();
