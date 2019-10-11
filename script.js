@@ -13,7 +13,10 @@ var directions = {
 };
 var direction = "";
 var player;
-var box = new Box();;
+var box = new Box();
+var level = new Level();
+
+
 
 $("body").keydown(function (event) {
     direction = directions[event.keyCode];
@@ -31,6 +34,20 @@ Block.prototype.drawSquare = function (color) {
     ctx.fillRect(x, y, blockSize, blockSize);
     ctx.strokeRect(x, y, blockSize, blockSize);
 }
+Block.prototype.drawRhombus = function (color) {
+    var centerX = this.col * blockSize + blockSize / 2;
+    var centerY = this.row * blockSize + blockSize / 2;
+    ctx.beginPath();
+    ctx.fillStyle = color;
+    ctx.moveTo(centerX, centerY - blockSize / 4);
+    ctx.lineTo(centerX - blockSize / 4, centerY);
+    ctx.lineTo(centerX, centerY + blockSize / 4);
+    ctx.lineTo(centerX + blockSize / 4, centerY);
+    ctx.lineTo(centerX, centerY - blockSize / 4);
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+}
 Block.prototype.drawCircle = function (color) {
     var centerX = this.col * blockSize + blockSize / 2;
     var centerY = this.row * blockSize + blockSize / 2;
@@ -41,6 +58,8 @@ Block.prototype.drawCircle = function (color) {
     ctx.stroke();
     ctx.closePath();
 }
+
+
 Block.prototype.equal = function (otherBlock) {
     return this.col === otherBlock.col && this.row === otherBlock.row;
 }
@@ -49,28 +68,30 @@ function Level() {
     this.levelMap = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1],
+    [1, 1, 2, 1, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 1, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 1, 4, 4, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1],
     [1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-    [1, 1, 0, 3, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 1, 1, 1, 1],
-    [1, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    ]; // 1 - стена, 2 - игрок, 3 - ящик
+    ]; // 1 - стена, 2 - игрок, 3 - ящик, 4 - выйгрышное положение
     this.segments = [];
+    this.winsegments = [];
 }
 Level.prototype.createLevel = function () {
+    box.segments = [];
     for (var i = 0; i < this.levelMap.length; i++) {
         for (var j = 0; j < this.levelMap[i].length; j++) {
             if (this.levelMap[i][j] === 1) {
@@ -81,14 +102,23 @@ Level.prototype.createLevel = function () {
             } else if (this.levelMap[i][j] === 3) {
                 box.segments.unshift(new Block(i, j));
                 box.draw();
+            } else if (this.levelMap[i][j] === 4) {
+                this.winsegments.unshift(new Block(i, j))
             }
         }
     }
 }
 Level.prototype.draw = function () {
+    ctx.clearRect(0, 0, width, height);
+
     for (var i = 0; i < this.segments.length; i++) {
         this.segments[i].drawSquare("brown");
     }
+    for (var i = 0; i < this.winsegments.length; i++) {
+        this.winsegments[i].drawRhombus("black");
+    }
+    player.draw();
+    box.draw();
 }
 
 function Player(row, col) {
@@ -98,6 +128,8 @@ Player.prototype.draw = function () {
     this.position.drawCircle("red");
 }
 Player.prototype.move = function () {
+    ctx.clearRect(this.position.col, this.position.row, width, height);
+    
     var newPosition = this.calcNewPosition();
     var collWall = this.checkCollision(newPosition, level);
     var collBox = this.checkCollision(newPosition, box);
@@ -111,8 +143,7 @@ Player.prototype.move = function () {
         this.position.col = newPosition.col;
     }
 
-    ctx.clearRect(this.position.col, this.position.row, width, height);
-    level.draw()
+    level.draw();
     player.draw();
     box.draw();
 }
@@ -161,8 +192,12 @@ Box.prototype.move = function (collBox, newPosition) {
     if (!this.checkCollisionWall(newPosBox) && !this.checkCollisionBox(newPosBox)) {
         collBox.row = newPosBox.row;
         collBox.col = newPosBox.col;
+        if (this.checkWinPos() === level.winsegments.length) {
+            gameOver();
+        }
         return true;
     }
+
     return false;
 }
 Box.prototype.calcNewPosition = function (collBox) {
@@ -204,7 +239,25 @@ Box.prototype.checkCollisionBox = function (newPos) {
     }
     return false;
 }
+Box.prototype.checkWinPos = function () {
+    var winPosCount = 0;
+    for (var i = 0; i < level.winsegments.length; i++) {
+        for (var j = 0; j < box.segments.length; j++) {
+            if (level.winsegments[i].row === box.segments[j].row && level.winsegments[i].col === box.segments[j].col) {
+                winPosCount += 1;
+            }
+        }
+    }
+    return winPosCount;
+}
 
-var level = new Level();
+function gameOver() {
+    ctx.font = "60px Courier";
+    ctx.fillStyle = "Black";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("Конец игры", width / 2, height / 2);
+}
+
 level.createLevel();
 level.draw();
